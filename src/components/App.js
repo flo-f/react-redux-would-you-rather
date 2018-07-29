@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Layout, Icon } from 'antd';
+import { Layout, Icon, Spin } from 'antd';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
 import QuestionsOverview from './QuestionsOverview';
+import QuestionDetail from './QuestionDetail';
 import Leaderboard from './Leaderboard';
 import AddQuestion from './AddQuestion';
 import './App.css';
@@ -60,6 +61,11 @@ class App extends Component {
                 )}/>
               }
               { loggedIn &&
+                <Route exact path="/questions/:question_id" render={(props) => (
+                  <QuestionDetail {...props} />
+                )}/>
+              }
+              { loggedIn &&
                 <Route path="/leaderboard" render={() => (
                   <Leaderboard />
                 )}/>
@@ -85,8 +91,10 @@ class App extends Component {
 
 App.propTypes = {
   users: PropTypes.object.isRequired,
+  questions: PropTypes.object.isRequired,
 };
 
 export default withRouter(connect((state) => ({
   users: state.users,
+  questions: state.questions,
 }))(App));

@@ -25,12 +25,10 @@ class QuestionsOverview extends Component {
 
     const answered = _.chain(questions.questions)
       .filter(question => _.includes(answeredIds, question.id))
-      .map(question => ({ ...question, createdBy: _.get(users, `users['${question.author}']`, {}) }))
       .sortBy(['timestamp'])
       .value();
     const unanswered = _.chain(questions.questions)
       .filter(question => !_.includes(answeredIds, question.id))
-      .map(question => ({ ...question, createdBy: _.get(users, `users['${question.author}']`, {}) }))
       .sortBy(['timestamp'])
       .value();
 

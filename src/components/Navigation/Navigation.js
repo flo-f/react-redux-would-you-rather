@@ -8,9 +8,6 @@ import { handleUserLogout } from './../../actions/users';
 import './Navigation.css';
 
 class Navigation extends Component {
-  handleClick = (e) => {
-  }
-
   render() {
     const { dispatch, users, collapsed } = this.props;
     const { currentUser } = users;

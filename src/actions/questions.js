@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as API from '../_DATA';
 
 export const GET_QUESTIONS_REQUEST = 'GET_QUESTIONS_REQUEST';
@@ -24,14 +25,19 @@ function getQuestionsError() {
 }
 
 export function handleGetQuestions() {
-  return (dispatch) => {
-    dispatch(getQuestionsRequest());
-    return API._getQuestions()
-      .then((users) => {
-        dispatch(getQuestionsSuccess(users))
-      })
-      .catch(() => {
-        dispatch(getQuestionsError());
-      });
+  return (dispatch, getState) => {
+    const { questions, users } = getState();
+
+    if (_.isEmpty(_.get(questions, 'questions'))) {
+      dispatch(getQuestionsRequest());
+      return API._getQuestions()
+        .then((questions) => {
+          dispatch(getQuestionsSuccess({ questions, users }))
+        })
+        .catch(() => {
+          dispatch(getQuestionsError());
+        });
+    }
+    return dispatch(getQuestionsSuccess({ questions: questions.questions, users }));
   };
 }
