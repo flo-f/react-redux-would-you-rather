@@ -59,8 +59,8 @@ function userLogout() {
   }
 }
 
-export function handleUserLogout(user) {
+export function handleUserLogout() {
   return (dispatch) => {
-    dispatch(userLogout(user));
+    dispatch(userLogout());
   }
 }
