@@ -16,14 +16,13 @@ class LoginForm extends Component {
   };
 
   handleSubmit = (e) => {
-    const { dispatch, form, users, onUserLogin } = this.props;
+    const { dispatch, form, users } = this.props;
 
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
         const user = users.users[values.userId];
         dispatch(handleUserLogin(user));
-        onUserLogin();
       }
     });
   };
@@ -81,7 +80,6 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   users: PropTypes.object.isRequired,
-  onUserLogin: PropTypes.func.isRequired,
 };
 
 const WrappedLoginForm = Form.create()(LoginForm);
