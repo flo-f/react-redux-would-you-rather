@@ -35,7 +35,7 @@ class QuestionsOverview extends Component {
       .value();
 
     return (
-      <Tabs defaultActiveKey="1" onChange={ this.callback }>
+      <Tabs defaultActiveKey="unanswered">
         <TabPane tab="Unanswered Questions" key="unanswered">
           <Questions loading={ loading } questions={ unanswered } />
         </TabPane>
