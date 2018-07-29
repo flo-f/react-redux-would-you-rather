@@ -7,6 +7,16 @@
   padding-left: 0.5em;
 }
 .navigation .current-user .logout {
+  color: rgba(255, 255, 255, 0.65);
   float: right;
   line-height: 2em;
+}
+
+.navigation .ant-menu .ant-menu-item > span,
+.navigation .ant-menu .ant-menu-item > span > a {
+  display: block;
+}
+
+.navigation a.nav-text {
+  color: rgba(255, 255, 255, 0.65);
 }

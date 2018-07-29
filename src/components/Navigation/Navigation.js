@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Avatar, Menu, Icon } from 'antd';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { handleUserLogout } from './../../actions/users';
 
@@ -34,16 +35,28 @@ class Navigation extends Component {
           mode="inline"
           defaultSelectedKeys={['1']}>
           <Menu.Item key="home">
-            <Icon type="home" />
-            <span>Home</span>
+            <span>
+              <Link to="/" className="nav-text">
+                <Icon type="home" />
+                Home
+              </Link>
+            </span>
           </Menu.Item>
           <Menu.Item key="leaderboard">
-            <Icon type="dashboard" />
-            <span>Leaderboard</span>
+            <span>
+              <Link to="/leaderboard" className="nav-text">
+                <Icon type="dashboard" />
+                Leaderboard
+              </Link>
+            </span>
           </Menu.Item>
           <Menu.Item key="addQuestion">
-            <Icon type="plus-circle-o" />
-            <span>Add Question</span>
+            <span>
+              <Link to="/add" className="nav-text">
+                <Icon type="plus-circle-o" />
+                Add Question
+              </Link>
+            </span>
           </Menu.Item>
         </Menu>
       </div>

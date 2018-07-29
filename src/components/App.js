@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Icon } from 'antd';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
+import QuestionsOverview from './QuestionsOverview';
+import Leaderboard from './Leaderboard';
+import AddQuestion from './AddQuestion';
 import './App.css';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -22,10 +26,11 @@ class App extends Component {
   render() {
     const { users } = this.props;
     const { currentUser } = users;
+    const loggedIn = currentUser && currentUser.id;
 
     return (
       <Layout className="layout">
-        { currentUser && currentUser.id &&
+        { loggedIn &&
           <Sider
             trigger={null}
             collapsible
@@ -36,7 +41,7 @@ class App extends Component {
         }
         <Layout className="innerLayout">
           <Header style={{ background: '#fff', padding: 0 }}>
-            { currentUser && currentUser.id &&
+            { loggedIn &&
               <Icon
                 className="trigger"
                 type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
@@ -46,7 +51,24 @@ class App extends Component {
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
             <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-              <LoginForm />
+              { !loggedIn &&
+                <LoginForm/>
+              }
+              { loggedIn &&
+                <Route exact path="/" render={() => (
+                  <QuestionsOverview />
+                )}/>
+              }
+              { loggedIn &&
+                <Route path="/leaderboard" render={() => (
+                  <Leaderboard />
+                )}/>
+              }
+              { loggedIn &&
+                <Route path="/add" render={() => (
+                  <AddQuestion />
+                )}/>
+              }
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
@@ -65,6 +87,6 @@ App.propTypes = {
   users: PropTypes.object.isRequired,
 };
 
-export default connect((state) => ({
+export default withRouter(connect((state) => ({
   users: state.users,
-}))(App);
+}))(App));
