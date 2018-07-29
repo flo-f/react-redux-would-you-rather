@@ -19,8 +19,11 @@ class Navigation extends Component {
         {!collapsed &&
           <div className="current-user">
             <Avatar src={currentUser.avatarURL}/>
-            <span>{currentUser.name}</span>
-            <a onClick={() => { dispatch(handleUserLogout()) }}>
+            <span className="name">{currentUser.name}</span>
+            <a
+              className="logout"
+              onClick={() => { dispatch(handleUserLogout()) }}
+            >
               <Icon type="logout"/>
             </a>
           </div>

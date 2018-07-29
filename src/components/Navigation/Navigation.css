@@ -1,6 +1,12 @@
 .navigation .current-user {
   height: 32px;
-  background: rgba(255,255,255,.2);
   margin: 16px;
   color: #fff;
+}
+.navigation .current-user .name {
+  padding-left: 0.5em;
+}
+.navigation .current-user .logout {
+  float: right;
+  line-height: 2em;
 }
