@@ -10,10 +10,6 @@ const TabPane = Tabs.TabPane;
 
 
 class QuestionsOverview extends Component {
-  callback = (key) => {
-    console.log(key);
-  };
-
   componentDidMount() {
     const { dispatch } = this.props;
 
@@ -35,8 +31,6 @@ class QuestionsOverview extends Component {
       .filter(question => !_.includes(answeredIds, question.id))
       .map(question => ({ ...question, createdBy: _.get(users, `users['${question.author}']`, {}) }))
       .value();
-
-    console.log('loading', loading);
 
     return (
       <Tabs defaultActiveKey="1" onChange={ this.callback }>
