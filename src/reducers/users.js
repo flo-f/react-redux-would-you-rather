@@ -1,4 +1,10 @@
-import { GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_ERROR, USER_LOGIN, USER_LOGOUT } from '../actions/users';
+import {
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR,
+  USER_LOGIN,
+  USER_LOGOUT
+} from '../actions/users';
 
 const initialState = {
   users: {},
