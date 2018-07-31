@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import * as API from '../_DATA';
 
+// get all questions
+
 export const GET_QUESTIONS_REQUEST = 'GET_QUESTIONS_REQUEST';
 export const GET_QUESTIONS_SUCCESS = 'GET_QUESTIONS_SUCCESS';
 export const GET_QUESTIONS_ERROR = 'GET_QUESTIONS_ERROR';
