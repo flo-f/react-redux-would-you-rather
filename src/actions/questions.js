@@ -43,3 +43,48 @@ export function handleGetQuestions() {
     return dispatch(getQuestionsSuccess({ questions: questions.questions, users }));
   };
 }
+
+// save question answer
+
+export const SAVE_QUESTION_ANSWER_REQUEST = 'SAVE_QUESTION_ANSWER_REQUEST';
+export const SAVE_QUESTION_ANSWER_SUCCESS = 'SAVE_QUESTION_ANSWER_SUCCESS';
+export const SAVE_QUESTION_ANSWER_ERROR = 'SAVE_QUESTION_ANSWER_ERROR';
+
+function saveQuestionAnswerRequest() {
+  return {
+    type: SAVE_QUESTION_ANSWER_REQUEST,
+  }
+}
+
+function saveQuestionAnswerSuccess(payload) {
+  return {
+    type: SAVE_QUESTION_ANSWER_SUCCESS,
+    payload,
+  }
+}
+
+function saveQuestionAnswerError() {
+  return {
+    type: SAVE_QUESTION_ANSWER_ERROR,
+  }
+}
+
+export function handleSaveQuestionAnswer(qid, answer) {
+  return (dispatch, getState) => {
+    const { users } = getState();
+    const { currentUser } = users;
+
+    dispatch(saveQuestionAnswerRequest());
+    return API._saveQuestionAnswer({
+      authedUser: currentUser.id,
+      qid,
+      answer
+    })
+      .then(() => {
+        dispatch(saveQuestionAnswerSuccess({ qid, answer, currentUserId: currentUser.id }));
+      })
+      .catch(() => {
+        dispatch(saveQuestionAnswerError());
+      });
+  };
+}

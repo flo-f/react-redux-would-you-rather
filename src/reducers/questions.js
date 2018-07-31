@@ -2,6 +2,9 @@ import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_ERROR,
+  SAVE_QUESTION_ANSWER_REQUEST,
+  SAVE_QUESTION_ANSWER_SUCCESS,
+  SAVE_QUESTION_ANSWER_ERROR,
 } from '../actions/questions';
 import _ from 'lodash';
 
@@ -30,6 +33,28 @@ export default function questions(state = initialState, action) {
         }, {});
       return { ...state, loading: false, error: false, questions: aggregatedQuestions };
     case GET_QUESTIONS_ERROR:
+      return { ...state, loading: false, error: true };
+    case SAVE_QUESTION_ANSWER_REQUEST:
+      return { ...state, loading: true, error: false };
+    case SAVE_QUESTION_ANSWER_SUCCESS:
+      const { qid, answer, currentUserId } = action.payload;
+
+      return {
+        ...state,
+        questions: {
+          ...state.questions,
+          [qid]: {
+            ...state.questions[qid],
+            [answer]: {
+              ...state.questions[qid][answer],
+              votes: state.questions[qid][answer].votes.concat([currentUserId])
+            }
+          }
+        },
+        loading: false,
+        error: false,
+      };
+    case SAVE_QUESTION_ANSWER_ERROR:
       return { ...state, loading: false, error: true };
     default:
       return state;

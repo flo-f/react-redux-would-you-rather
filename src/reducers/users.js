@@ -3,8 +3,11 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
   USER_LOGIN,
-  USER_LOGOUT
+  USER_LOGOUT,
 } from '../actions/users';
+import {
+  SAVE_QUESTION_ANSWER_SUCCESS
+} from '../actions/questions';
 
 const initialState = {
   users: {},
@@ -25,6 +28,24 @@ export default function users(state = initialState, action) {
       return { ...state, currentUser: action.payload };
     case USER_LOGOUT:
       return { ...state, currentUser: {} };
+    case SAVE_QUESTION_ANSWER_SUCCESS:
+      const { qid, answer, currentUserId } = action.payload;
+      const currentUser = {
+        ...state.users[currentUserId],
+        answers: {
+          ...state.users[currentUserId].answers,
+          [qid]: answer
+        }
+      };
+
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          [currentUserId]: currentUser
+        },
+        currentUser,
+      };
     default:
       return state;
   }

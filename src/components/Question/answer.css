@@ -1,0 +1,19 @@
+.option-detail {
+  margin: 1em 0;
+  padding: 1em 0.5em;
+}
+.option-detail.chosen {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.option-detail .numbers {
+  text-align: center;
+}
+
+.option-detail .quota {
+  font-size: 12px;
+}
+
+.option-detail .text .ant-badge {
+  padding-right: 10px;
+}

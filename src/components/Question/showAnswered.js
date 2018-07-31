@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Button, Card, Col, Form, Row, Radio, Progress } from 'antd';
+import { Avatar, Card, Col, Row } from 'antd';
 import _ from 'lodash';
+import OptionDetail from './answer';
 
 class AnsweredQuestion extends Component {
   render() {
@@ -12,10 +13,6 @@ class AnsweredQuestion extends Component {
     const votePercentages = [
       Math.round(100 * _.get(question, 'optionOne.votes', []).length / noOfVotes),
       Math.round(100 * _.get(question, 'optionTwo.votes', []).length / noOfVotes),
-    ];
-    const chosen = [
-      answer === 'optionOne',
-      answer === 'optionTwo',
     ];
 
     return (
@@ -30,22 +27,16 @@ class AnsweredQuestion extends Component {
           <Col span={16} offset={2}>
             <div>
               <h3>Results</h3>
-              <Row style={ chosen[0] ? { backgroundColor: 'rgba(0, 0, 0, 0.05)' } : {} }>
-                <Col span={8}>
-                  <Progress type="circle" percent={votePercentages[0]} width={80} format={percent => `${percent}%`} />
-                </Col>
-                <Col span={14} offset={2}>
-                  { chosen[0] ? <strong>Your vote:</strong> : '' }{ question.optionOne.text }
-                </Col>
-              </Row>
-              <Row style={ chosen[1] ? { backgroundColor: 'rgba(0, 0, 0, 0.05)' } : {} }>
-                <Col span={8}>
-                  <Progress type="circle" percent={votePercentages[1]} width={80} format={percent => `${percent}%`} />
-                </Col>
-                <Col span={14} offset={2}>
-                  { chosen[1] ? <strong>Your vote:</strong> : '' }{ question.optionTwo.text }
-                </Col>
-              </Row>
+              <OptionDetail
+                option={ question.optionOne }
+                chosen={ answer === 'optionOne' }
+                totalVotes={ noOfVotes }
+              />
+              <OptionDetail
+                option={ question.optionTwo }
+                chosen={ answer === 'optionTwo' }
+                totalVotes={ noOfVotes }
+              />
             </div>
           </Col>
         </Row>

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import AnsweredQuestion from './showAnswered';
-import UnansweredQuestion from './showUnanswered';
+import UnansweredQuestionForm from './showUnanswered';
 
 class Question extends Component {
   render() {
     const { question, answer } = this.props;
 
     if (!_.isEmpty(answer)) {
-      return <AnsweredQuestion question={ question } anwer={ answer }/>
+      return <AnsweredQuestion question={ question } answer={ answer }/>
     }
-    return <UnansweredQuestion question={ question }/>;
+    return <UnansweredQuestionForm question={ question }/>;
   }
 }
 
