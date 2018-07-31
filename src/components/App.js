@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Layout, Icon, Spin } from 'antd';
+import { Layout, Icon } from 'antd';
 import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
 import QuestionsOverview from './QuestionsOverview';
