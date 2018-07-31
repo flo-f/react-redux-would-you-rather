@@ -7,7 +7,7 @@ import Navigation from './Navigation/Navigation';
 import LoginForm from './LoginForm/LoginForm';
 import QuestionsOverview from './QuestionsOverview';
 import QuestionDetail from './QuestionDetail';
-import Leaderboard from './Leaderboard';
+import Leaderboard from './Leaderboard/list';
 import AddQuestion from './AddQuestion';
 import './App.css';
 
