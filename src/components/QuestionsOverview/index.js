@@ -25,11 +25,11 @@ class QuestionsOverview extends Component {
 
     const answered = _.chain(questions.questions)
       .filter(question => _.includes(answeredIds, question.id))
-      .sortBy(['timestamp'])
+      .sortBy(question => -1 * question.timestamp)
       .value();
     const unanswered = _.chain(questions.questions)
       .filter(question => !_.includes(answeredIds, question.id))
-      .sortBy(['timestamp'])
+      .sortBy(question => -1 * question.timestamp)
       .value();
 
     return (
