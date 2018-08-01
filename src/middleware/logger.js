@@ -1,9 +1,15 @@
+const DEBUG = false;
+
 const logger = (store) => (next) => (action) => {
-  console.group(action.type);
-  console.log('The action', action);
+  if (DEBUG) {
+    console.group(action.type);
+    console.log('The action', action);
+  }
   const result = next(action);
-  console.log('The new state', store.getState());
-  console.groupEnd();
+  if (DEBUG) {
+    console.log('The new state', store.getState());
+    console.groupEnd();
+  }
   return result;
 }
 
