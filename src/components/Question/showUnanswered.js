@@ -4,7 +4,6 @@ import { Avatar, Button, Card, Col, Form, Row, Radio } from 'antd';
 import _ from 'lodash';
 import { handleSaveQuestionAnswer } from '../../actions/questions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 class UnansweredQuestionForm extends Component {
   handleSubmit = (e) => {

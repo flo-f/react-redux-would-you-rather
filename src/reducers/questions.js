@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   GET_QUESTIONS_REQUEST,
   GET_QUESTIONS_SUCCESS,
@@ -9,7 +10,6 @@ import {
   SAVE_QUESTION_REQUEST,
   SAVE_QUESTION_SUCCESS,
 } from '../actions/questions';
-import _ from 'lodash';
 
 const initialState = {
   questions: {},
