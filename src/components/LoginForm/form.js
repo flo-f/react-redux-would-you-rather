@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Form, Select, Button, Row, Col } from 'antd';
 import { handleGetUsers, handleUserLogin } from '../../actions/users';
@@ -14,7 +15,7 @@ class LoginForm extends Component {
   };
 
   handleSubmit = (e) => {
-    const { dispatch, form, users } = this.props;
+    const { dispatch, form, users, history } = this.props;
 
     e.preventDefault();
     form.validateFields((err, values) => {
@@ -23,7 +24,7 @@ class LoginForm extends Component {
       }
       else {
         const user = users.users[values.userId];
-        dispatch(handleUserLogin(user));
+        dispatch(handleUserLogin(user, history));
       }
     });
   };
@@ -85,6 +86,6 @@ LoginForm.propTypes = {
 
 const WrappedLoginForm = Form.create()(LoginForm);
 
-export default connect((state) => ({
+export default withRouter(connect((state) => ({
   users: state.users,
-}))(WrappedLoginForm);
+}))(WrappedLoginForm));
