@@ -6,6 +6,7 @@ import {
   USER_LOGOUT,
 } from '../actions/users';
 import {
+  SAVE_QUESTION_SUCCESS,
   SAVE_QUESTION_ANSWER_SUCCESS
 } from '../actions/questions';
 
@@ -45,6 +46,21 @@ export default function users(state = initialState, action) {
           [currentUserId]: currentUser
         },
         currentUser,
+      };
+    case SAVE_QUESTION_SUCCESS:
+      const { question } = action.payload;
+
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          [question.author]: {
+            ...state.users[question.author],
+            questions: state.users[question.author].questions.concat([question.id])
+          },
+        },
+        loading: false,
+        error: false,
       };
     default:
       return state;

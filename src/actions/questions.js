@@ -88,3 +88,51 @@ export function handleSaveQuestionAnswer(qid, answer) {
       });
   };
 }
+
+
+// create question
+
+export const SAVE_QUESTION_REQUEST = 'SAVE_QUESTION_REQUEST';
+export const SAVE_QUESTION_SUCCESS = 'SAVE_QUESTION_SUCCESS';
+export const SAVE_QUESTION_ERROR = 'SAVE_QUESTION_ERROR';
+
+function saveQuestionRequest() {
+  return {
+    type: SAVE_QUESTION_REQUEST,
+  }
+}
+
+function saveQuestionSuccess(payload) {
+  return {
+    type: SAVE_QUESTION_SUCCESS,
+    payload,
+  }
+}
+
+function saveQuestionError(payload) {
+  return {
+    type: SAVE_QUESTION_ERROR,
+    payload,
+  }
+}
+
+export function handleSaveQuestion({ optionOneText, optionTwoText }, history) {
+  return (dispatch, getState) => {
+    const { users } = getState();
+    const { currentUser } = users;
+
+    dispatch(saveQuestionRequest());
+    return API._saveQuestion({
+      author: currentUser.id,
+      optionOneText,
+      optionTwoText,
+    })
+      .then((question) => {
+        dispatch(saveQuestionSuccess({ question, users: users.users }));
+        history.push('/');
+      })
+      .catch((err) => {
+        dispatch(saveQuestionError(err));
+      });
+  };
+}
