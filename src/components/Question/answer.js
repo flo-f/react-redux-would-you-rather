@@ -13,7 +13,7 @@ const OptionDetail = ({ option, chosen, totalVotes }) => (
         format={ percent => `${ percent }%` }
       />
       <p className="quota">
-        { option.votes.length }/{ totalVotes }
+        { option.votes.length } votes
       </p>
     </Col>
     <Col span={14} offset={2}>
