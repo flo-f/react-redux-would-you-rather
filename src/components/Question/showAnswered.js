@@ -8,12 +8,7 @@ class AnsweredQuestion extends Component {
   render() {
     const { question, answer } = this.props;
     const loading = _.isEmpty(question);
-
     const noOfVotes = _.get(question, 'optionOne.votes', []).length + _.get(question, 'optionTwo.votes', []).length;
-    const votePercentages = [
-      Math.round(100 * _.get(question, 'optionOne.votes', []).length / noOfVotes),
-      Math.round(100 * _.get(question, 'optionTwo.votes', []).length / noOfVotes),
-    ];
 
     return (
       <Card loading={ loading } title={`${ question.createdBy.name } asks:`}>
