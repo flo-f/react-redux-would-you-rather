@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Form, Select, Button, Row, Col } from 'antd';
 import { handleGetUsers, handleUserLogin } from '../../actions/users';
 import './LoginForm.css';
+import { message } from 'antd/lib/index';
 
 class LoginForm extends Component {
   componentDidMount = () => {
@@ -17,7 +18,10 @@ class LoginForm extends Component {
 
     e.preventDefault();
     form.validateFields((err, values) => {
-      if (!err) {
+      if (err) {
+        message.error('Please validate your input');
+      }
+      else {
         const user = users.users[values.userId];
         dispatch(handleUserLogin(user));
       }
