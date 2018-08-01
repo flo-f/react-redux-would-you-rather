@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { handleUserLogout } from './../../actions/users';
 
-import './Navigation.css';
+import './index.css';
 
 class Navigation extends Component {
   render() {

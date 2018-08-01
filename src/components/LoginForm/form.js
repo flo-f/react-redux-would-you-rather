@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Select, Button, Row, Col } from 'antd';
 import { handleGetUsers, handleUserLogin } from '../../actions/users';
-import './LoginForm.css';
+import './form.css';
 import { message } from 'antd/lib/index';
 
 class LoginForm extends Component {
