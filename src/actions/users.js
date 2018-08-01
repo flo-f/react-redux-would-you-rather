@@ -47,10 +47,9 @@ function userLogin(payload) {
   }
 }
 
-export function handleUserLogin(user, history) {
+export function handleUserLogin(user) {
   return (dispatch) => {
     dispatch(userLogin(user));
-    history.push('/');
   }
 }
 
