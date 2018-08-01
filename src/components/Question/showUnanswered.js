@@ -6,9 +6,6 @@ import { handleSaveQuestionAnswer } from '../../actions/questions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
-
 class UnansweredQuestionForm extends Component {
   handleSubmit = (e) => {
     const {
@@ -49,24 +46,24 @@ class UnansweredQuestionForm extends Component {
             <Col span={16} offset={2}>
               <div>
                 <h3>Would you rather</h3>
-                <FormItem>
+                <Form.Item>
                   { getFieldDecorator('answer', {
                     rules: [
                       { required: true, message: 'Please pick an answer' },
                     ],
                   })(
-                    <RadioGroup>
+                    <Radio.Group>
                       <Radio style={radioStyle} value="optionOne">{ question.optionOne.text }</Radio>
                       <Radio style={radioStyle} value="optionTwo">{ question.optionTwo.text }</Radio>
-                    </RadioGroup>
+                    </Radio.Group>
                   )}
-                </FormItem>
+                </Form.Item>
               </div>
             </Col>
           </Row>
           <Row>
             <Col span={16} offset={6}>
-              <FormItem>
+              <Form.Item>
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -74,7 +71,7 @@ class UnansweredQuestionForm extends Component {
                 >
                   Submit
                 </Button>
-              </FormItem>
+              </Form.Item>
             </Col>
           </Row>
         </Form>

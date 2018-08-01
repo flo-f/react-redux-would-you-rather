@@ -5,9 +5,6 @@ import { Form, Select, Button, Row, Col } from 'antd';
 import { handleGetUsers, handleUserLogin } from '../../actions/users';
 import './LoginForm.css';
 
-const FormItem = Form.Item;
-const Option = Select.Option;
-
 class LoginForm extends Component {
   componentDidMount = () => {
     const { dispatch } = this.props;
@@ -44,7 +41,7 @@ class LoginForm extends Component {
       >
         <Row>
           <Col span={16} offset={4}>
-            <FormItem
+            <Form.Item
               {...formItemLayout}
               label="User"
               hasFeedback
@@ -55,13 +52,13 @@ class LoginForm extends Component {
                 ],
               })(
                 <Select placeholder={ loading ? "Loading..." : "Please choose a user" }>
-                  { allUsers.map(user => <Option key={user.id}>{user.name}</Option>) }
+                  { allUsers.map(user => <Select.Option key={user.id}>{user.name}</Select.Option>) }
                 </Select>
               )}
-            </FormItem>
+            </Form.Item>
           </Col>
           <Col span={11} offset={6}>
-            <FormItem>
+            <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
@@ -70,7 +67,7 @@ class LoginForm extends Component {
               >
                 Log in
               </Button>
-            </FormItem>
+            </Form.Item>
           </Col>
         </Row>
       </Form>
